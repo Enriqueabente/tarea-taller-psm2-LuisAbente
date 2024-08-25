@@ -54,7 +54,7 @@ def jugar_wordle():
         intentos_restantes -= 1
     print(colored("Lo siento, has agotado tus intentos. La palabra secreta era:", "red"), palabra_secreta)
 
-# Comienza el juego
+# Comienza
 print(colored("¡Bienvenido a Wordle!", "magenta"))
 print(colored("Intenta adivinar la palabra secreta de 5 letras.", "magenta"))
 jugar_wordle()
