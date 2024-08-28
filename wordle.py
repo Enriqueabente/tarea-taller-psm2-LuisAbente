@@ -28,9 +28,9 @@ def comparar_palabras(palabra_secreta, conjetura):
     for i in range(len(palabra_secreta)):
         if i < len(conjetura):  # Asegurar que hay letras suficientes en la conjetura
             if palabra_secreta[i] == conjetura[i]:
-                resultado += colored(conjetura[i], "green")
+                resultado += colored(conjetura[i], "red")
             elif conjetura[i] in palabra_secreta:
-                resultado += colored(conjetura[i], "yellow")
+                resultado += colored(conjetura[i], "blue")
             else:
                 resultado += conjetura[i]
         else:
@@ -43,24 +43,24 @@ def jugar_wordle():
     """
     palabra_secreta = obtener_palabra_secreta()
     intentos_restantes = 5
-    historial=[] #lista para almacenar los intentos y resultados
+    historial = []  # lista para almacenar los intentos y resultados
     while intentos_restantes > 0:
         print(colored("\nIntentos restantes:", "blue"), intentos_restantes)
         conjetura = obtener_entrada_usuario()
         resultado = comparar_palabras(palabra_secreta, conjetura)
 
-        #agregar el intento y el resultado al historial
-        historial.append(("Resultado:","blue"),resultado)
+        # Agregar el intento y el resultado al historial
+        historial.append((conjetura, resultado))
 
         print(colored("Resultado:", "blue"), resultado)
 
-        #mostrar historial de intentos
-        print(colored("\nHistorial de intentos:","cyan"))
+        # Mostrar historial de intentos
+        print(colored("\nHistorial de intentos:", "cyan"))
         for intento, res in historial:
-                print(f"{intento} -> {res}")
+            print(f"{intento} -> {res}")
 
-        if resultado == colored("", "green") * 5:
-            print(colored("¡Felicidades! Has adivinado la palabra secreta:", "green"), palabra_secreta)
+        if resultado == colored("", "red") * 5:
+            print(colored("¡Felicidades! Has adivinado la palabra secreta:", "red"), palabra_secreta)
             return
         intentos_restantes -= 1
     print(colored("Lo siento, has agotado tus intentos. La palabra secreta era:", "red"), palabra_secreta)
