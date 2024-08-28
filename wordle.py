@@ -43,11 +43,22 @@ def jugar_wordle():
     """
     palabra_secreta = obtener_palabra_secreta()
     intentos_restantes = 5
+    historial=[] #lista para almacenar los intentos y resultados
     while intentos_restantes > 0:
         print(colored("\nIntentos restantes:", "blue"), intentos_restantes)
         conjetura = obtener_entrada_usuario()
         resultado = comparar_palabras(palabra_secreta, conjetura)
+
+        #agregar el intento y el resultado al historial
+        historial.append(("Resultado:","blue"),resultado)
+
         print(colored("Resultado:", "blue"), resultado)
+
+        #mostrar historial de intentos
+        print(colored("\nHistorial de intentos:","cyan"))
+        for intento, res in historial:
+                print(f"{intento} -> {res}")
+
         if resultado == colored("", "green") * 5:
             print(colored("¡Felicidades! Has adivinado la palabra secreta:", "green"), palabra_secreta)
             return
